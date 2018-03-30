@@ -21,3 +21,5 @@ public class Human implements Information, CognitiveProcesses {
         System.out.println(name + "thinking now");
     }
 }
+
+// git test
