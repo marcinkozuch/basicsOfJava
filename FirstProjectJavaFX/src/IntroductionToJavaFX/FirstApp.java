@@ -1,0 +1,53 @@
+package IntroductionToJavaFX;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class FirstApp extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        BorderPane layout = new BorderPane();
+
+        Scene scene = new Scene(layout, 400, 200);
+
+        TextField textField = new TextField();
+        Label label = new Label("Average: 0.0");
+
+        Button button = new Button("Button");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String textFromTextField = textField.getText();
+                String[] splittedText = textFromTextField.split(",");
+                double average = 0.0;
+                for (String s : splittedText) {
+                    average += Double.parseDouble(s);
+                }
+                average /= splittedText.length;
+                label.setText("Average: " + average);
+            }
+        });
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(textField, button, label);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setSpacing(10);
+
+        layout.setCenter(vBox);
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("My first JavaFX Application");
+        primaryStage.show();
+    }
+}
