@@ -1,0 +1,2 @@
+This is an example writing to file
+This is new text
